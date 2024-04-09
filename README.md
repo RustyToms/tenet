@@ -231,6 +231,8 @@ $ make virtualenv
 
 $ source env/bin/activate
 
+(|> tenet <|) $ make install
+
 
 ### run tenet cli application
 
@@ -253,4 +255,9 @@ and can be built with the included `make` helper:
 $ make docker
 
 $ docker run -it tenet --help
+```
+
+To cache dependencies so they don't need to be downloaded for each build, pass the "dev" value to the `mode` variable:
+```
+$ make docker mode='dev'
 ```

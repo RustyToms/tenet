@@ -1,5 +1,6 @@
 # User-specific stuff
 .idea/*
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -130,3 +131,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Docker stuff
+.devcontainer/
+
+# Github stuff
+.github/

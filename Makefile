@@ -1,3 +1,10 @@
+mode = prod
+
+PYTHON = python3
+ifeq (, $(shell which python3 ))
+	PYTHON=python
+endif
+
 .PHONY: clean virtualenv test docker dist dist-upload
 
 clean:
@@ -13,7 +20,7 @@ install:
 	pip install .[test]
 
 test:
-	python -m pytest \
+	${PYTHON} -m pytest \
 		-v \
 		--cov=tenet \
 		--cov-report=term \
@@ -21,12 +28,12 @@ test:
 		tests/
 
 docker: clean
-	docker build -t tenet:latest .
+	docker build --progress=plain --target $(mode) -t tenet:latest .
 
 dist: clean
 	rm -rf dist/*
-	python setup.py sdist
-	python setup.py bdist_wheel
+	${PYTHON} setup.py sdist
+	${PYTHON} setup.py bdist_wheel
 
 dist-upload:
 	twine upload dist/*
